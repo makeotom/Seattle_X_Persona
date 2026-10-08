@@ -1,0 +1,55 @@
+# ==========================================
+# Airflow Configurations & Databases
+# ==========================================
+# Local configuration file (contains database connections, secrets, etc.)
+airflow.cfg
+airflow_varibles.json
+
+# Local SQLite databases (default for local development)
+*.db
+airflow.db
+
+# Airflow webserver/scheduler state files
+*.pid
+airflow-*.err
+airflow-*.out
+
+# ==========================================
+# Logs & Process Artifacts
+# ==========================================
+# Local execution logs (should not be committed)
+logs/
+airflow-*.log
+warnings.txt
+git_version
+
+# ==========================================
+# Python Artifacts & Environments
+# ==========================================
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+wheels/
+
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+
+# ==========================================
+# IDE & System Files
+# ==========================================
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+*~
+.DS_Store
