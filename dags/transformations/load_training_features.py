@@ -116,8 +116,10 @@ def incrementally_load_training_features(silver_url: str, bronze_url: str, oba_a
     training_df = pd.DataFrame()
     try:
         training_df = pd.read_csv(f'{silver_url}/training_features.csv', parse_dates=['current_time', 'departure_time'])
+        training_df = training_df[['route_id', 'stop_seq', 'day_type', 'rush_hour_status', 'far_status', 'distance', 'current_time', 'ride_id', 'stop_id', 'departure_time']]
         today = pd.Timestamp.now().normalize()
         training_df = training_df[training_df['current_time'].dt.normalize() == today]
+        training_df = training_df.reset_index()
     except Exception as e:
         print('no past training features')
     # if it is current time check!
@@ -137,5 +139,5 @@ def incrementally_load_training_features(silver_url: str, bronze_url: str, oba_a
         system_check_df = system_check_df[~current_time_mask]
         
         print(curr_time, '----> len(df) ---->', len(temp_training_df))
-        training_df.to_csv(f'{silver_url}/training_features.csv')
+        training_df.to_csv(f'{silver_url}/training_features.csv', index=False, index_label=False)
         time.sleep(60)
